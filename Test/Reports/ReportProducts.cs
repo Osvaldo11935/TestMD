@@ -23,6 +23,7 @@ namespace Test.Reports
             InitializeComponent();
             _productUseCase = productUseCase;
             _serviceProvider = serviceProvider;
+            txt_report_product_search.TextChanged += txt_report_product_search_TextChanged;
         }
 
         private void ReportProducts_Load(object sender, EventArgs e)
@@ -161,6 +162,23 @@ namespace Test.Reports
                 }
             }
             var nextForm = _serviceProvider.GetRequiredService<ReportCustomers>();
+            nextForm.FormClosed += (s, args) => nextForm.Hide();
+            nextForm.Show();
+            this.Hide();
+        }
+
+        private void verVendasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            foreach (Form form in Application.OpenForms)
+            {
+                if (form is SoldForm)
+                {
+                    form.Show();
+                    form.Focus();
+                    return;
+                }
+            }
+            var nextForm = _serviceProvider.GetRequiredService<SoldForm>();
             nextForm.FormClosed += (s, args) => nextForm.Hide();
             nextForm.Show();
             this.Hide();

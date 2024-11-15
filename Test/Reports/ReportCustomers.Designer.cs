@@ -45,6 +45,7 @@
             this.relatoriosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.produtosToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.vendasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.verVendasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -147,6 +148,7 @@
             this.inicioToolStripMenuItem,
             this.produtosToolStripMenuItem,
             this.registrarVendaToolStripMenuItem,
+            this.verVendasToolStripMenuItem,
             this.clientesToolStripMenuItem,
             this.relatoriosToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
@@ -195,16 +197,23 @@
             // produtosToolStripMenuItem1
             // 
             this.produtosToolStripMenuItem1.Name = "produtosToolStripMenuItem1";
-            this.produtosToolStripMenuItem1.Size = new System.Drawing.Size(224, 26);
+            this.produtosToolStripMenuItem1.Size = new System.Drawing.Size(171, 26);
             this.produtosToolStripMenuItem1.Text = "Produtos";
             this.produtosToolStripMenuItem1.Click += new System.EventHandler(this.produtosToolStripMenuItem1_Click);
             // 
             // vendasToolStripMenuItem
             // 
             this.vendasToolStripMenuItem.Name = "vendasToolStripMenuItem";
-            this.vendasToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.vendasToolStripMenuItem.Size = new System.Drawing.Size(171, 26);
             this.vendasToolStripMenuItem.Text = "Vendas";
             this.vendasToolStripMenuItem.Click += new System.EventHandler(this.vendasToolStripMenuItem_Click);
+            // 
+            // verVendasToolStripMenuItem
+            // 
+            this.verVendasToolStripMenuItem.Name = "verVendasToolStripMenuItem";
+            this.verVendasToolStripMenuItem.Size = new System.Drawing.Size(124, 24);
+            this.verVendasToolStripMenuItem.Text = "Ver Vendas";
+            this.verVendasToolStripMenuItem.Click += new System.EventHandler(this.verVendasToolStripMenuItem_Click);
             // 
             // ReportCustomers
             // 
@@ -244,5 +253,6 @@
         private System.Windows.Forms.ToolStripMenuItem relatoriosToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem produtosToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem vendasToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem verVendasToolStripMenuItem;
     }
 }

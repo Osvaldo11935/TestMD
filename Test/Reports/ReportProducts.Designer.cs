@@ -29,14 +29,14 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
-            this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
             this.btn_search_date = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.dtp_end_date = new System.Windows.Forms.DateTimePicker();
-            this.dtp_start_date = new System.Windows.Forms.DateTimePicker();
+            this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
             this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.dtp_start_date = new System.Windows.Forms.DateTimePicker();
             this.txt_report_product_search = new System.Windows.Forms.TextBox();
+            this.dtp_end_date = new System.Windows.Forms.DateTimePicker();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.inicioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.produtosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -45,6 +45,7 @@
             this.relatoriosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.vendasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.clientesToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.verVendasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -63,15 +64,6 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(776, 656);
             this.panel1.TabIndex = 0;
-            // 
-            // reportViewer1
-            // 
-            this.reportViewer1.LocalReport.ReportEmbeddedResource = "Test.Reports.ReportProducts.rdlc";
-            this.reportViewer1.Location = new System.Drawing.Point(3, 203);
-            this.reportViewer1.Name = "reportViewer1";
-            this.reportViewer1.ServerReport.BearerToken = null;
-            this.reportViewer1.Size = new System.Drawing.Size(770, 446);
-            this.reportViewer1.TabIndex = 0;
             // 
             // btn_search_date
             // 
@@ -94,31 +86,14 @@
             this.label3.TabIndex = 14;
             this.label3.Text = "Data do fim";
             // 
-            // label2
+            // reportViewer1
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Lucida Bright", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(245, 127);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(132, 19);
-            this.label2.TabIndex = 13;
-            this.label2.Text = "Data de inicio";
-            // 
-            // dtp_end_date
-            // 
-            this.dtp_end_date.Font = new System.Drawing.Font("Lucida Bright", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtp_end_date.Location = new System.Drawing.Point(383, 164);
-            this.dtp_end_date.Name = "dtp_end_date";
-            this.dtp_end_date.Size = new System.Drawing.Size(382, 28);
-            this.dtp_end_date.TabIndex = 12;
-            // 
-            // dtp_start_date
-            // 
-            this.dtp_start_date.Font = new System.Drawing.Font("Lucida Bright", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtp_start_date.Location = new System.Drawing.Point(383, 120);
-            this.dtp_start_date.Name = "dtp_start_date";
-            this.dtp_start_date.Size = new System.Drawing.Size(382, 28);
-            this.dtp_start_date.TabIndex = 11;
+            this.reportViewer1.LocalReport.ReportEmbeddedResource = "Test.Reports.ReportProducts.rdlc";
+            this.reportViewer1.Location = new System.Drawing.Point(3, 203);
+            this.reportViewer1.Name = "reportViewer1";
+            this.reportViewer1.ServerReport.BearerToken = null;
+            this.reportViewer1.Size = new System.Drawing.Size(770, 446);
+            this.reportViewer1.TabIndex = 0;
             // 
             // label1
             // 
@@ -130,6 +105,24 @@
             this.label1.TabIndex = 10;
             this.label1.Text = "Buscar";
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Lucida Bright", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(245, 127);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(132, 19);
+            this.label2.TabIndex = 13;
+            this.label2.Text = "Data de inicio";
+            // 
+            // dtp_start_date
+            // 
+            this.dtp_start_date.Font = new System.Drawing.Font("Lucida Bright", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtp_start_date.Location = new System.Drawing.Point(383, 120);
+            this.dtp_start_date.Name = "dtp_start_date";
+            this.dtp_start_date.Size = new System.Drawing.Size(382, 28);
+            this.dtp_start_date.TabIndex = 11;
+            // 
             // txt_report_product_search
             // 
             this.txt_report_product_search.Location = new System.Drawing.Point(531, 63);
@@ -139,6 +132,14 @@
             this.txt_report_product_search.TabIndex = 9;
             this.txt_report_product_search.TextChanged += new System.EventHandler(this.txt_report_product_search_TextChanged);
             // 
+            // dtp_end_date
+            // 
+            this.dtp_end_date.Font = new System.Drawing.Font("Lucida Bright", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtp_end_date.Location = new System.Drawing.Point(383, 164);
+            this.dtp_end_date.Name = "dtp_end_date";
+            this.dtp_end_date.Size = new System.Drawing.Size(382, 28);
+            this.dtp_end_date.TabIndex = 12;
+            // 
             // menuStrip1
             // 
             this.menuStrip1.Font = new System.Drawing.Font("Lucida Bright", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -147,6 +148,7 @@
             this.inicioToolStripMenuItem,
             this.produtosToolStripMenuItem,
             this.registrarVendaToolStripMenuItem,
+            this.verVendasToolStripMenuItem,
             this.clientesToolStripMenuItem,
             this.relatoriosToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
@@ -195,16 +197,23 @@
             // vendasToolStripMenuItem
             // 
             this.vendasToolStripMenuItem.Name = "vendasToolStripMenuItem";
-            this.vendasToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.vendasToolStripMenuItem.Size = new System.Drawing.Size(164, 26);
             this.vendasToolStripMenuItem.Text = "Vendas";
             this.vendasToolStripMenuItem.Click += new System.EventHandler(this.vendasToolStripMenuItem_Click);
             // 
             // clientesToolStripMenuItem1
             // 
             this.clientesToolStripMenuItem1.Name = "clientesToolStripMenuItem1";
-            this.clientesToolStripMenuItem1.Size = new System.Drawing.Size(224, 26);
+            this.clientesToolStripMenuItem1.Size = new System.Drawing.Size(164, 26);
             this.clientesToolStripMenuItem1.Text = "Clientes";
             this.clientesToolStripMenuItem1.Click += new System.EventHandler(this.clientesToolStripMenuItem1_Click);
+            // 
+            // verVendasToolStripMenuItem
+            // 
+            this.verVendasToolStripMenuItem.Name = "verVendasToolStripMenuItem";
+            this.verVendasToolStripMenuItem.Size = new System.Drawing.Size(124, 24);
+            this.verVendasToolStripMenuItem.Text = "Ver Vendas";
+            this.verVendasToolStripMenuItem.Click += new System.EventHandler(this.verVendasToolStripMenuItem_Click);
             // 
             // ReportProducts
             // 
@@ -244,5 +253,6 @@
         private System.Windows.Forms.ToolStripMenuItem relatoriosToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem vendasToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem clientesToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem verVendasToolStripMenuItem;
     }
 }

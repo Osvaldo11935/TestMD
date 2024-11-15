@@ -247,6 +247,12 @@
     <Compile Include="SaleForm.Designer.cs">
       <DependentUpon>SaleForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="SoldForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SoldForm.Designer.cs">
+      <DependentUpon>SoldForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="SqlServerTypes\Loader.cs" />
     <Compile Include="UseCases\CustomerUseCase.cs" />
     <Compile Include="UseCases\ItemsSaleUseCase.cs" />
@@ -288,6 +294,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="SaleForm.resx">
       <DependentUpon>SaleForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SoldForm.resx">
+      <DependentUpon>SoldForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\DataSources\CustomerForm.datasource" />

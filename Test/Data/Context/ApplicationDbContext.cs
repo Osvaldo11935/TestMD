@@ -17,10 +17,7 @@ namespace Teste.Data.Context
         #region Method
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            //if (!optionsBuilder.IsConfigured)
-            //{
-            //    optionsBuilder.UseNpgsql("Host=localhost;Database=db_test_dev;Username=root;Password=123");
-            //}
+          
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

@@ -1,5 +1,4 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Reporting.WinForms;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -9,90 +8,96 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Test.Models.Responses;
+using Test.Reports;
+using Teste.Models.Entities;
 using Teste.UseCases;
 
-namespace Test.Reports
+namespace Test
 {
-    public partial class ReportCustomers : Form
+    public partial class SoldForm : Form
     {
-        private CustomerUseCase _customerUseCase;
+        private ItemsSaleUseCase _itemsSaleUseCase;
         private IServiceProvider _serviceProvider;
-        public ReportCustomers(CustomerUseCase customerUseCase, IServiceProvider serviceProvider)
+        public SoldForm(ItemsSaleUseCase itemsSaleUseCase, IServiceProvider serviceProvider)
         {
             InitializeComponent();
-            _customerUseCase = customerUseCase;
+            _itemsSaleUseCase = itemsSaleUseCase;
+            txt_sold_search.TextChanged += txt_sold_search_TextChanged;
             _serviceProvider = serviceProvider;
-            txt_report_customer_search.TextChanged += txt_report_customer_search_TextChanged;
         }
 
-        private void ReportCustomers_Load(object sender, EventArgs e)
+        private void dgv_sold_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            FillReport();
+
         }
-        private void FillReport(DateTime startDate = default, DateTime endDate = default, string search = default)
+
+        private void SoldForm_Load(object sender, EventArgs e)
         {
-            var resultFindCustomer = _customerUseCase.FindReportCustomer(startDate, endDate, search :search);
+            LoadCustomerDataGrid();
+        }
 
-            if(resultFindCustomer.IsFailure){
-                var err = resultFindCustomer.Error;
-                MessageBox.Show(err.Description, err.Message);
-                return;
-            }
+        #region Aux
+        private DataTable CreateCustomerDataTable(List<ItemsSalesResponse> itemsSales)
+        {
+            DataTable table = new DataTable();
 
-            DataTable dt = new DataTable();
-            dt.Columns.Add("Name", typeof(string));
-            dt.Columns.Add("Email", typeof(string));
-            dt.Columns.Add("PhoneNumber", typeof(string));
-            dt.Columns.Add("TotalAmountSpent", typeof(decimal));
+            table.Columns.Add("Id", typeof(Guid));
+            table.Columns.Add("Nome do produto", typeof(string));
+            table.Columns.Add("Quantidade", typeof(string));
+            table.Columns.Add("Preço unitario", typeof(string));
+            table.Columns.Add("Nome do cliente", typeof(string));
+            table.Columns.Add("Nº de telefone do cliente", typeof(string));
+            table.Columns.Add("Vendido em", typeof(string));
 
-            var reportCustomers = resultFindCustomer.Ok;
-            foreach (var reportCustomer in reportCustomers)
+            foreach (var itemsSale in itemsSales)
             {
-                dt.Rows.Add(reportCustomer.Name, reportCustomer.Email, reportCustomer.PhoneNumber, reportCustomer.TotalAmountSpent);
+                table.Rows.Add(itemsSale.Id, itemsSale.Product.Name, itemsSale.Quantity, itemsSale.UnitPrice, itemsSale.Sale.Customer.Name, itemsSale.Sale.Customer.PhoneNumber, itemsSale.CreatedAt);
             }
 
-            ReportDataSource reportDataSource = new ReportDataSource("DataSetCustomer", dt);
-
-            this.reportViewer1.LocalReport.DataSources.Clear();
-            this.reportViewer1.LocalReport.DataSources.Add(reportDataSource);
-
-            this.reportViewer1.RefreshReport();
+            return table;
         }
-
-        private void txt_report_customer_search_TextChanged(object sender, EventArgs e)
+        private void LoadCustomerDataGrid(DateTime startDate = default, DateTime endDate = default, string search = default)
         {
-            if (!string.IsNullOrEmpty(txt_report_customer_search.Text))
+            try
             {
-                FillReport(search: txt_report_customer_search.Text);
+                var resultFindItemsSale = _itemsSaleUseCase.FindAllItemsSale(startDate, endDate, search);
+                if (resultFindItemsSale.IsSuccess)
+                {
+                    var itemsSales = resultFindItemsSale.Ok;
+                    DataTable table = CreateCustomerDataTable(itemsSales);
+                    dgv_sold.DataSource = table;
+                }
+                else
+                {
+                    var err = resultFindItemsSale.Error;
+                    MessageBox.Show(err.Description, err.Message);
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro ao carregar dados: {ex.Message}");
+            }
+        }
+        #endregion
+
+        private void txt_sold_search_TextChanged(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(txt_sold_search.Text))
+            {
+                LoadCustomerDataGrid(search:txt_sold_search.Text);
             }
         }
 
-        private void btn_search_date_Click(object sender, EventArgs e)
+        private void btn_search_sold_Click(object sender, EventArgs e)
         {
-            FillReport(dtp_start_date.Value, dtp_end_date.Value, txt_report_customer_search.Text);
+            LoadCustomerDataGrid(dtp_start.Value, dtp_end.Value);
         }
 
         private void inicioToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
             Application.OpenForms[0].Show();
-            this.Hide();
-        }
-
-        private void produtosToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            foreach (Form form in Application.OpenForms)
-            {
-                if (form is ProductForm)
-                {
-                    form.Show();
-                    form.Focus();
-                    return;
-                }
-            }
-            var nextForm = _serviceProvider.GetRequiredService<ProductForm>();
-            nextForm.FormClosed += (s, args) => nextForm.Hide();
-            nextForm.Show();
             this.Hide();
         }
 
@@ -113,7 +118,7 @@ namespace Test.Reports
             this.Hide();
         }
 
-        private void clientesToolStripMenuItem_Click(object sender, EventArgs e)
+        private void clienteToolStripMenuItem_Click(object sender, EventArgs e)
         {
             foreach (Form form in Application.OpenForms)
             {
@@ -164,21 +169,26 @@ namespace Test.Reports
             this.Hide();
         }
 
-        private void verVendasToolStripMenuItem_Click(object sender, EventArgs e)
+        private void clientesToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             foreach (Form form in Application.OpenForms)
             {
-                if (form is SoldForm)
+                if (form is ReportCustomers)
                 {
                     form.Show();
                     form.Focus();
                     return;
                 }
             }
-            var nextForm = _serviceProvider.GetRequiredService<SoldForm>();
+            var nextForm = _serviceProvider.GetRequiredService<ReportCustomers>();
             nextForm.FormClosed += (s, args) => nextForm.Hide();
             nextForm.Show();
             this.Hide();
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

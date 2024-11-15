@@ -62,6 +62,7 @@ namespace Test
             services.AddScoped<ProductForm>();
             services.AddScoped<CustomerForm>();
             services.AddScoped<SaleForm>();
+            services.AddScoped<SoldForm>();
             services.AddScoped<ReportProducts>();
             services.AddScoped<ReportCustomers>();
             services.AddScoped<ReportSales>();

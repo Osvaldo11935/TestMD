@@ -26,7 +26,7 @@ namespace Teste.UseCases
             _itemsSaleRepository = itemsSaleRepository ?? throw new ArgumentNullException(nameof(itemsSaleRepository));
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
-        public Result<List<ItemsSalesResponse>> FindAllItemsSale(string search = null)
+        public Result<List<ItemsSalesResponse>> FindAllItemsSale(DateTime startDate = default, DateTime endDate = default, string search = null)
         {
             try
             {
@@ -43,6 +43,10 @@ namespace Teste.UseCases
                     _logger.LogInformation("Filtrando itens vendidos com base na pesquisa: {SearchTerm}", search);
                     query = query.Where(e => e.Product.Name.Contains(search) || 
                                              e.Sale.Customer.Name.Contains(search));
+                }
+
+                if (startDate.Date != default && endDate.Date != default) { 
+                     query = query.Where(e => e.CreatedAt.Value.Date >= startDate.Date && e.CreatedAt.Value.Date <= endDate.Date);
                 }
 
                 var ItemsSales = query

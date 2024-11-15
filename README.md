@@ -1,5 +1,5 @@
 # Documentação do Projeto
-
+## Link da documentação do projecto: https://docs.google.com/document/d/e/2PACX-1vTDWdOmYI_jhYdoxY5vo_LMJmrx3LhJnPkPq_QLAFolmzgZJXF4gJSZo9mfllSaiScxxMWsiJ3d-tsm/pub
 ## Requisitos para Execução
 - **Visual Studio**
 - **PostgreSQL**
@@ -10,6 +10,10 @@
    Update-Database
 
 # Constituição do Projeto
+Deve ser alterado a connectionString que esta no arquivo de configuração(Program.cs)
+```ConnectionString  a ser alterada 
+Host=localhost;Database=db_test_dev;Username=root;Password=123
+
 ## Estrutura de Pastas
 ### Test
     #### Data 

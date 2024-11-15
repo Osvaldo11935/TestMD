@@ -56,7 +56,7 @@ namespace Test.Utils
                     selectedRow.Cells["Nome"].Value.ToString(),
                     selectedRow.Cells["Descrição"].Value.ToString(),
                     decimal.Parse(selectedRow.Cells["Preço"].Value.ToString()),
-                    quantityToAdd);
+                    0);
             }
         }
 
@@ -75,8 +75,8 @@ namespace Test.Utils
                 row.Cells["Nome"].Value.ToString(),
                 row.Cells["Descrição"].Value.ToString(),
                 double.Parse(row.Cells["Preço"].Value.ToString()),
-                double.Parse(row.Cells["Preço"].Value.ToString())* quantity,
-                quantity);
+                0,
+                0);
 
             return table;
         }

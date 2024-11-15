@@ -275,14 +275,14 @@ namespace Test
         {
             foreach (Form form in Application.OpenForms)
             {
-                if (form is ProductForm)
+                if (form is SoldForm)
                 {
                     form.Show();
                     form.Focus();
                     return;
                 }
             }
-            var nextForm = _serviceProvider.GetRequiredService<ProductForm>();
+            var nextForm = _serviceProvider.GetRequiredService<SoldForm>();
             nextForm.FormClosed += (s, args) => nextForm.Hide();
             nextForm.Show();
             this.Hide();
@@ -349,11 +349,18 @@ namespace Test
         {
             if (!string.IsNullOrEmpty(txt_customer_name.Text)) {
               var customer =  _customerUseCase.FindCustomerByName(txt_customer_name.Text);
+               
                 if (customer.IsSuccess) {
                     var ok = customer.Ok;
                     txt_customer_email.Text = ok.Email;
                     txt_customer_phone_number.Text = ok.PhoneNumber;
                     txt_customer_address.Text = ok.Address;
+                }
+                else
+                {
+                    txt_customer_email.Clear();
+                    txt_customer_phone_number.Clear(); ;
+                    txt_customer_address.Clear(); ;
                 }
             }
         }

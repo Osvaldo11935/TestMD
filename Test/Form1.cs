@@ -120,5 +120,22 @@ namespace Test
             nextForm.Show();
             Application.OpenForms[0].Hide();
         }
+
+        private void verVendasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            foreach (Form form in Application.OpenForms)
+            {
+                if (form is SoldForm)
+                {
+                    form.Show();
+                    form.Focus();
+                    return;
+                }
+            }
+            var nextForm = _serviceProvider.GetRequiredService<SoldForm>();
+            nextForm.FormClosed += (s, args) => nextForm.Hide();
+            nextForm.Show();
+            Application.OpenForms[0].Hide();
+        }
     }
 }

@@ -12,13 +12,16 @@ namespace Test.Models.Responses
         public Guid Id { get; set; }
         public int Quantity { get; set; }
         public double UnitPrice { get; set; }
+        public DateTime CreatedAt {  get; set; } 
         public SalesResponse Sale { get; set; }
         public ProductResponse Product { get; set; }
 
         public ItemsSalesResponse(ItemsSale itemsSale)
         {
+            Id = itemsSale.Id.Value;
             Quantity = itemsSale.Quantity;
             UnitPrice = itemsSale.UnitPrice;
+            CreatedAt = itemsSale.CreatedAt.Value;
             if (itemsSale.Sale != null) {
                 Sale = new SalesResponse(itemsSale.Sale);
             }
