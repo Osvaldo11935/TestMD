@@ -78,6 +78,12 @@ namespace Test.Utils
 
             return sum;
         }
-
+        public static void ClearGridViewValues(DataGridView gridView)
+        {
+            gridView.DataSource = null;
+          
+            gridView.Rows.Clear();
+            gridView.Columns.Clear();
+        }
     }
 }

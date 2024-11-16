@@ -137,10 +137,9 @@ namespace Teste.UseCases
                 _logger.LogInformation("Iniciando inserção do cliente.");
 
                 var customerExist = _CustomerRepository.Query()
-                    .FirstOrDefault(e => e.Name.Contains(request.Name) &&
-                     e.Email.Contains(request.Email) &&
-                     e.PhoneNumber.Contains(request.PhoneNumber) &&
-                     e.Address.Contains(request.Address));
+                    .FirstOrDefault(e => e.Name == request.Name &&
+                     e.Email == request.Email &&
+                     e.PhoneNumber == request.PhoneNumber);
 
                 if (customerExist != null){
                     return new ErrorResponse()

@@ -211,6 +211,7 @@
             // 
             // dgv_cart
             // 
+            this.dgv_cart.AllowDrop = true;
             this.dgv_cart.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgv_cart.Location = new System.Drawing.Point(3, 3);
             this.dgv_cart.Name = "dgv_cart";

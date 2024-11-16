@@ -42,6 +42,7 @@ namespace Teste.Models.Entities
 
         public void AddSale(List<CreateItemsSaleRequest> requests)
         {
+            Sales = new List<Sale>();   
             var itemsSales = new List<ItemsSale>();
 
             var sale = new Sale(Id.Value);

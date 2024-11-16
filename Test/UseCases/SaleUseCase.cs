@@ -37,7 +37,7 @@ namespace Teste.UseCases
                 _logger.LogInformation("Iniciando inserção do Venda.");
 
                 var customer = _customerRepository.Query()
-                    .Include(e => e.Sales)
+                    
                     .FirstOrDefault(x => x.Id == customerId);
 
                 if (customer == null) {

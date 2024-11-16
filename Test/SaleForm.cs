@@ -58,7 +58,15 @@ namespace Test
                 MessageBox.Show(resultValidator);
                 return;
             }
-             
+
+            var itemsRequests = CartUtil.PrepareSaleItems(dgv_cart);
+
+            if(itemsRequests.Count == 0)
+            {
+                MessageBox.Show("Adiciona produto no carrinho para prosseguir com a venda", "falha ao registrar venda.");
+                return;
+            }
+
             var requestCreateUser = new CreateCustomerRequest(
                 txt_customer_name.Text,
                 txt_customer_email.Text,
@@ -71,12 +79,12 @@ namespace Test
             {
                 var ok = resultCreateUser.Ok;
 
-                var itemsRequests = CartUtil.PrepareSaleItems(dgv_cart);
+               
                 var resultCreateSale =  await _saleUseCase.InsertSaleAsync(ok.Value, itemsRequests);
                
                 if (resultCreateSale.IsSuccess)
                 {
-                    dgv_cart.DataSource = null; 
+                    DataGridViewUtil.ClearGridViewValues(dgv_cart); 
                     ClearForm();
                     LoadProductDataGrid();
                     MessageBox.Show("Venda registrada com sucesso");
@@ -94,12 +102,11 @@ namespace Test
                 if (!string.IsNullOrEmpty(err.Extension))
                 {
                     var customerId = Guid.Parse(err.Extension); 
-                    var itemsRequests = CartUtil.PrepareSaleItems(dgv_cart);
                     var resultCreateSale = await _saleUseCase.InsertSaleAsync(customerId, itemsRequests);
 
                     if (resultCreateSale.IsSuccess)
                     {
-                        dgv_cart.DataSource = null;
+                        DataGridViewUtil.ClearGridViewValues(dgv_cart);
                         ClearForm();
                         LoadProductDataGrid();
                         MessageBox.Show("Venda registrada com sucesso");
