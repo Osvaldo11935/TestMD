@@ -55,6 +55,9 @@
             this.produtosToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.vendasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.clientesToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.button1 = new System.Windows.Forms.Button();
+            this.label7 = new System.Windows.Forms.Label();
+            this.lb_total_s = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -71,12 +74,13 @@
             this.panel1.Controls.Add(this.panel3);
             this.panel1.Location = new System.Drawing.Point(12, 41);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1495, 629);
+            this.panel1.Size = new System.Drawing.Size(1495, 678);
             this.panel1.TabIndex = 0;
             // 
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.panel2.Controls.Add(this.button1);
             this.panel2.Controls.Add(this.label4);
             this.panel2.Controls.Add(this.btn_finish_sale);
             this.panel2.Controls.Add(this.label3);
@@ -179,12 +183,14 @@
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.panel3.Controls.Add(this.lb_total_s);
+            this.panel3.Controls.Add(this.label7);
             this.panel3.Controls.Add(this.label6);
             this.panel3.Controls.Add(this.panel5);
             this.panel3.Controls.Add(this.panel4);
             this.panel3.Location = new System.Drawing.Point(545, 13);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(947, 613);
+            this.panel3.Size = new System.Drawing.Size(947, 662);
             this.panel3.TabIndex = 1;
             // 
             // label6
@@ -322,11 +328,42 @@
             this.clientesToolStripMenuItem1.Text = "Clientes";
             this.clientesToolStripMenuItem1.Click += new System.EventHandler(this.clientesToolStripMenuItem1_Click);
             // 
+            // button1
+            // 
+            this.button1.Font = new System.Drawing.Font("Lucida Bright", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Location = new System.Drawing.Point(107, 531);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(247, 56);
+            this.button1.TabIndex = 8;
+            this.button1.Text = "Calcular total a pagar";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Lucida Bright", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(656, 630);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(129, 19);
+            this.label7.TabIndex = 9;
+            this.label7.Text = "Total a pagar:";
+            // 
+            // lb_total_s
+            // 
+            this.lb_total_s.AutoSize = true;
+            this.lb_total_s.Font = new System.Drawing.Font("Lucida Bright", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lb_total_s.Location = new System.Drawing.Point(791, 630);
+            this.lb_total_s.Name = "lb_total_s";
+            this.lb_total_s.Size = new System.Drawing.Size(86, 19);
+            this.lb_total_s.TabIndex = 10;
+            this.lb_total_s.Text = "R$ 00.00";
+            // 
             // SaleForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1519, 677);
+            this.ClientSize = new System.Drawing.Size(1519, 731);
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.panel1);
             this.Name = "SaleForm";
@@ -378,5 +415,8 @@
         private System.Windows.Forms.ToolStripMenuItem vendasToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem clientesToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem inicioToolStripMenuItem;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label lb_total_s;
     }
 }

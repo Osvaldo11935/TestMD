@@ -64,9 +64,11 @@ namespace Test
                 var resultFindItemsSale = _itemsSaleUseCase.FindAllItemsSale(startDate, endDate, search);
                 if (resultFindItemsSale.IsSuccess)
                 {
-                    var itemsSales = resultFindItemsSale.Ok;
-                    DataTable table = CreateCustomerDataTable(itemsSales);
+                    var data = resultFindItemsSale.Ok;
+                    DataTable table = CreateCustomerDataTable(data.itemsSales);
+                    
                     dgv_sold.DataSource = table;
+                    lb_total_sold.Text = $"R$ {data.totalSold}";
                 }
                 else
                 {

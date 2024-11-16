@@ -26,7 +26,7 @@ namespace Teste.UseCases
             _itemsSaleRepository = itemsSaleRepository ?? throw new ArgumentNullException(nameof(itemsSaleRepository));
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
-        public Result<List<ItemsSalesResponse>> FindAllItemsSale(DateTime startDate = default, DateTime endDate = default, string search = null)
+        public Result<(List<ItemsSalesResponse> itemsSales, double totalSold)> FindAllItemsSale(DateTime startDate = default, DateTime endDate = default, string search = null)
         {
             try
             {
@@ -49,12 +49,15 @@ namespace Teste.UseCases
                      query = query.Where(e => e.CreatedAt.Value.Date >= startDate.Date && e.CreatedAt.Value.Date <= endDate.Date);
                 }
 
+                var totalSold = query.Sum(e => e.UnitPrice);
+
                 var ItemsSales = query
                     .Select(e => new ItemsSalesResponse(e))
                     .ToList();
 
                 _logger.LogInformation("Consulta de vendas concluída com {Count} resultados.", ItemsSales.Count);
-                return ItemsSales;
+                
+                return (ItemsSales, totalSold);
             }
             catch (Exception ex)
             {

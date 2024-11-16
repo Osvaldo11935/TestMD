@@ -30,6 +30,12 @@ namespace Test
             txt_customer_phone_number.TextChanged += txt_customer_phone_number_TextChanged;
             txt_search_product_sale.TextChanged += txt_search_product_sale_TextChanged;
             _serviceProvider = serviceProvider;
+
+            dgv_cart.CellValueChanged += dgv_cart_CellValueChanged;
+            dgv_cart.RowsAdded += dgv_cart_RowsAdded;
+            dgv_cart.RowsRemoved += dgv_cart_RowsRemoved;
+            dgv_cart.CellEndEdit += dgv_cart_CellEndEdit;
+
         }
 
         private void SaleForm_Load(object sender, EventArgs e)
@@ -361,6 +367,34 @@ namespace Test
                     txt_customer_address.Clear(); ;
                 }
             }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+        }
+        private void dgv_cart_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            UpdateTotal();
+        }
+
+        private void dgv_cart_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
+        {
+            UpdateTotal();
+        }
+
+        private void dgv_cart_RowsRemoved(object sender, DataGridViewRowsRemovedEventArgs e)
+        {
+            UpdateTotal();
+        }
+        private void dgv_cart_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+
+            dgv_cart.CommitEdit(DataGridViewDataErrorContexts.Commit);
+        }
+        private void UpdateTotal()
+        {
+            decimal total = DataGridViewUtil.SumColumnValues(dgv_cart, "Preço Unitario");
+            lb_total_s.Text = $"R$ {total}" ; 
         }
     }
 }

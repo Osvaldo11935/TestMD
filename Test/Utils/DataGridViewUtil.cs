@@ -55,5 +55,29 @@ namespace Test.Utils
             AddButtonColumn(gridView, "EditColumn", "Editar", "Editar", Color.LightBlue, Color.Black);
             AddButtonColumn(gridView, "DeleteColumn", "Deletar", "Deletar", Color.IndianRed, Color.White);
         }
+        public static decimal SumColumnValues(DataGridView gridView, string columnName)
+        {
+            decimal sum = 0;
+
+            
+            if (!gridView.Columns.Contains(columnName))
+            {
+               
+                return sum;
+            }
+
+          
+            foreach (DataGridViewRow row in gridView.Rows)
+            {
+                if (row.Cells[columnName].Value != null &&
+                    decimal.TryParse(row.Cells[columnName].Value.ToString(), out decimal value))
+                {
+                    sum += value;
+                }
+            }
+
+            return sum;
+        }
+
     }
 }
