@@ -34,8 +34,6 @@ namespace Test
 
         private void SaleForm_Load(object sender, EventArgs e)
         {
-            
-            dgv_list_product_sale.CellClick += dgv_list_product_sale_CellContentClick;
             LoadProductDataGrid();
             DataGridViewUtil.AddActionAddButtons(dgv_list_product_sale);
         }
