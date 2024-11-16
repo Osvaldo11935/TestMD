@@ -12,6 +12,7 @@ using Teste.Interfaces.IRepositories;
 using Teste.UseCases;
 using Microsoft.EntityFrameworkCore;
 using Test.Reports;
+using System.Configuration;
 
 namespace Test
 {
@@ -39,8 +40,14 @@ namespace Test
         {
 
             #region DbContext
-            services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseNpgsql("Host=localhost;Database=db_test_dev;Username=root;Password=123"));
+            services.AddScoped<ApplicationDbContext>(provider =>
+            {
+                var connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
+                var options = new DbContextOptionsBuilder<ApplicationDbContext>()
+                                  .UseNpgsql(connectionString)
+                                  .Options;
+                return new ApplicationDbContext(options);
+            });
             #endregion
 
             #region Registrar repositórios e UnitOfWork

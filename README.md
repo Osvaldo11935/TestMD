@@ -10,7 +10,7 @@
    Update-Database
 
 # Constituição do Projeto
-Deve ser alterado a connectionString que esta no arquivo de configuração(Program.cs)
+Deve ser alterado a connectionString que esta no arquivo de configuração(app.config)
 ```ConnectionString  a ser alterada 
 Host=localhost;Database=db_test_dev;Username=root;Password=123
 
